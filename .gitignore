@@ -1,0 +1,378 @@
+# ====================================
+# Multi-Modal Fake News Detection System
+# .gitignore
+# ====================================
+
+# ====================================
+# Python
+# ====================================
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env/
+virtualenv/
+__pypackages__/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+Untitled*.ipynb
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# ====================================
+# Machine Learning / Data
+# ====================================
+# Large datasets (Phase 1)
+ml/data/raw/
+ml/data/processed/
+ml/data/temp/
+ml/data/cache/
+
+# Model checkpoints & weights (Phase 2)
+ml/checkpoints/*.pt
+ml/checkpoints/*.pth
+ml/checkpoints/*.ckpt
+ml/checkpoints/*.bin
+ml/checkpoints/*.safetensors
+ml/saved_models/
+!ml/checkpoints/.gitkeep
+
+# Training logs (Phase 2)
+ml/logs/
+ml/runs/
+ml/tensorboard/
+!ml/logs/.gitkeep
+
+# Weights & Biases
+wandb/
+
+# MLflow
+mlruns/
+mlflow_artifacts/
+
+# DVC
+.dvc/
+*.dvc
+
+# Experiment tracking
+experiments/
+outputs/
+
+# ====================================
+# Environment & Secrets
+# ====================================
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.*.local
+*.env
+
+# AWS
+.aws/
+aws-credentials.json
+
+# API keys
+*api-key*
+*api_key*
+*apikey*
+secrets.json
+credentials.json
+
+# ====================================
+# Node.js (Phase 4 & 5)
+# ====================================
+# Dependencies
+node_modules/
+jspm_packages/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# Build outputs
+.next/
+.nuxt/
+dist/
+out/
+build/
+
+# Misc
+.npm
+.eslintcache
+.node_repl_history
+*.tgz
+
+# Yarn
+.yarn-integrity
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# ====================================
+# IDEs & Editors
+# ====================================
+# VSCode
+.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# PyCharm / IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+.idea_modules/
+
+# Vim
+*.swp
+*.swo
+*~
+.*.sw[a-z]
+.netrwhist
+
+# Emacs
+\#*\#
+.\#*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Visual Studio
+.vs/
+
+# ====================================
+# Operating Systems
+# ====================================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+Icon
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+*.stackdump
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ====================================
+# Docker (Phase 6)
+# ====================================
+# Docker volumes
+docker-compose.override.yml
+.dockerignore.local
+*.dockerfile.local
+
+# Docker build context
+.docker-build-cache/
+
+# ====================================
+# Backend (Phase 4)
+# ====================================
+# Uploads
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Generated files
+backend/generated/
+
+# ====================================
+# Frontend (Phase 5)
+# ====================================
+# Build artifacts
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.turbo
+
+# Static file generation
+public/uploads/
+public/generated/
+
+# ====================================
+# Testing & CI/CD
+# ====================================
+# Test outputs
+test-results/
+*.log
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Playwright
+playwright-report/
+.playwright/
+
+# ====================================
+# Documentation
+# ====================================
+# Generated docs (keep source markdown)
+docs/_build/
+docs/.doctrees/
+
+# ====================================
+# Temporary & Miscellaneous
+# ====================================
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+tmp/
+temp/
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Large media (images should be on S3/CDN, not in git)
+*.mp4
+*.avi
+*.mov
+*.wmv
+
+# Compressed images (keep small ones for UI)
+# Uncomment if you want to ignore large images
+# *.jpg
+# *.jpeg
+# *.png
+# *.gif
+
+# ====================================
+# Project-specific
+# ====================================
+# Session state (keep in user's local copilot folder)
+.copilot/session-state/*/files/*
+
+# Cache directories
+.cache/
+*.cache
+
+# Lock files (keep package-lock.json, Pipfile.lock, but ignore others)
+*.lock
+!package-lock.json
+!Pipfile.lock
+!poetry.lock
+!yarn.lock
+
+# Debug files
+debug.log
+error.log
+*.debug
+
+# Profiling
+*.prof
+*.profile

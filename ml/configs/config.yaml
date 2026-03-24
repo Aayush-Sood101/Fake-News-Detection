@@ -1,0 +1,55 @@
+# Configuration for ML Training and Inference
+
+# Data paths
+data:
+  raw_fakeddit: "ml/data/raw/fakeddit"
+  raw_newsclippings: "ml/data/raw/newsclippings"
+  visualnews_images: "ml/data/raw/newsclippings/visualnews_images"
+  processed: "ml/data/processed"
+  use_sample: true  # Use sample datasets (5000 samples per split)
+  
+# Model configuration
+model:
+  text_encoder: "roberta-base"
+  image_encoder: "google/vit-base-patch16-224"
+  projection_dim: 512
+  num_attention_heads: 8
+  num_classes: 2
+  freeze_text_layers: 8  # Freeze first 8 RoBERTa layers for faster training
+  classifier_dropout: 0.2
+  encoder_dropout: 0.1
+
+# Training configuration
+training:
+  batch_size: 16  # Reduced for sample dataset
+  gradient_accumulation_steps: 2  # Effective batch size = 32
+  epochs: 5  # Reduced for quick training on sample data
+  learning_rate_encoder: 2e-5
+  learning_rate_head: 1e-4
+  warmup_steps: 200  # Reduced for sample dataset
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  label_smoothing: 0.1
+  early_stopping_patience: 3
+  
+# Data processing
+preprocessing:
+  max_text_length: 256
+  image_size: 224
+  
+# Paths
+paths:
+  checkpoints: "ml/checkpoints"
+  logs: "ml/logs"
+  
+# Hardware
+hardware:
+  mixed_precision: true  # Use fp16 for faster training
+  num_workers: 4
+  device: "auto"  # Will auto-detect cuda/mps/cpu
+
+# Experiment tracking (optional)
+wandb:
+  enabled: false  # Set to true if you want to use Weights & Biases
+  project: "fake-news-detection"
+  entity: null  # Your wandb username/team
