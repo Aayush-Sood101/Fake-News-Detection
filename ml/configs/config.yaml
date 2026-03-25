@@ -24,8 +24,8 @@ training:
   batch_size: 16  # Reduced for sample dataset
   gradient_accumulation_steps: 2  # Effective batch size = 32
   epochs: 5  # Reduced for quick training on sample data
-  learning_rate_encoder: 2e-5
-  learning_rate_head: 1e-4
+  learning_rate_encoder: 0.00002  # 2e-5 in decimal notation
+  learning_rate_head: 0.0001      # 1e-4 in decimal notation
   warmup_steps: 200  # Reduced for sample dataset
   weight_decay: 0.01
   max_grad_norm: 1.0
