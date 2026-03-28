@@ -1,7 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile, Form
 from pydantic import BaseModel
 from inference.predictor import FakeNewsPredictor
-
 import os
 
 app = FastAPI()
@@ -13,39 +12,34 @@ model_path = os.path.join(BASE_DIR, "..", "checkpoints", "best_model.pt")
 predictor = FakeNewsPredictor(model_path)
 
 
-
-# ✅ load model ONCE
-
-
-class PredictRequest(BaseModel):
-    title: str
-    body: str = ""
-    image_url: str | None = None
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
-
-@app.post("/predict")
-def predict(req: PredictRequest):
-    result = predictor.predict(
-        title=req.title,
-        body=req.body,
-        image_url=req.image_url
-    )
-    return result
-
-
+# ✅ Response schema
 class PredictResponse(BaseModel):
     label: str
     confidence: float
     explanation: str
 
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
+
+# ✅ SINGLE correct endpoint
 @app.post("/predict", response_model=PredictResponse)
-def predict(req: PredictRequest):
+async def predict(
+    title: str = Form(...),
+    body: str = Form(""),
+    image: UploadFile = File(None)
+):
+    image_bytes = None
+
+    if image:
+        image_bytes = await image.read()
+
     result = predictor.predict(
-        title=req.title,
-        body=req.body,
-        image_url=req.image_url
+        title=title,
+        body=body,
+        image_bytes=image_bytes   
     )
+
     return result
