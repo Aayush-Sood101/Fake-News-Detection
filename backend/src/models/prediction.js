@@ -15,6 +15,16 @@ export default (sequelize, DataTypes) => {
       allowNull: false
     },
     explanation: DataTypes.TEXT,
+    modality: {
+      type: DataTypes.ENUM('text_only', 'multimodal'),
+      allowNull: false,
+      defaultValue: 'text_only'
+    },
+    feedback: {
+      type: DataTypes.ENUM('correct', 'incorrect'),
+      allowNull: true,
+      defaultValue: null
+    },
     userId: {
       type: DataTypes.UUID,
       allowNull: false
