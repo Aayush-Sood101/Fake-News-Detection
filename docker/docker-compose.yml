@@ -38,11 +38,11 @@ services:
     container_name: fakenews-ml
     restart: unless-stopped
     environment:
-      MODEL_PATH: /app/ml/checkpoints/best_model.pt
+      MODEL_PATH: /app/best_model.pt
       DEVICE: ${ML_DEVICE:-cpu}
       PORT: 8000
     volumes:
-      - ../ml/checkpoints:/app/ml/checkpoints:ro
+      - ../best_model.pt:/app/best_model.pt:ro
     ports:
       - "8000:8000"
     healthcheck:

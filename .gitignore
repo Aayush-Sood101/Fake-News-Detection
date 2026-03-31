@@ -114,6 +114,9 @@ ml/checkpoints/*.safetensors
 ml/saved_models/
 !ml/checkpoints/.gitkeep
 
+# Root-level model artifact used by inference
+best_model.pt
+
 # Training logs (Phase 2)
 ml/logs/
 ml/runs/

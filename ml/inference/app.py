@@ -17,7 +17,8 @@ logger = logging.getLogger(__name__)
 predictor = None
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(BASE_DIR, "..", "checkpoints", "best_model.pt")
+default_model_path = os.path.abspath(os.path.join(BASE_DIR, "..", "..", "best_model.pt"))
+model_path = os.getenv("MODEL_PATH", default_model_path)
 
 
 @asynccontextmanager

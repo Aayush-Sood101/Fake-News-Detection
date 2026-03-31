@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY ml/ ./ml/
 
 ENV PYTHONPATH=/app
-ENV MODEL_PATH=/app/ml/checkpoints/best_model.pt
+ENV MODEL_PATH=/app/best_model.pt
 ENV PORT=8000
 
 EXPOSE 8000

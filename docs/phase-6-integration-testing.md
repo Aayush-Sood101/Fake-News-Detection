@@ -67,11 +67,11 @@ services:
     container_name: fakenews-ml
     restart: unless-stopped
     environment:
-      MODEL_PATH: /app/ml/checkpoints/best_model.pt
+      MODEL_PATH: /app/best_model.pt
       DEVICE: ${ML_DEVICE:-cpu}
       PORT: 8000
     volumes:
-      - ../ml/checkpoints:/app/ml/checkpoints:ro
+      - ../best_model.pt:/app/best_model.pt:ro
     ports:
       - "8000:8000"
     healthcheck:
@@ -194,7 +194,7 @@ COPY ml/ ./ml/
 
 # Set environment
 ENV PYTHONPATH=/app
-ENV MODEL_PATH=/app/ml/checkpoints/best_model.pt
+ENV MODEL_PATH=/app/best_model.pt
 ENV PORT=8000
 
 EXPOSE 8000
@@ -271,7 +271,7 @@ cp docker/.env.example docker/.env
 # Edit docker/.env with your values
 
 # Ensure model checkpoint exists
-ls ml/checkpoints/best_model.pt
+ls best_model.pt
 
 # Build and start all services
 cd docker

@@ -715,7 +715,7 @@ from pydantic import BaseModel
 from predictor import FakeNewsPredictor
 
 app = FastAPI()
-predictor = FakeNewsPredictor(model_path="checkpoints/best_model.pt")
+predictor = FakeNewsPredictor(model_path="best_model.pt")
 
 class PredictRequest(BaseModel):
     title: str
@@ -878,7 +878,7 @@ NEXT_PUBLIC_API_URL=http://localhost:5000
 
 ### ML Service (.env)
 ```env
-MODEL_PATH=checkpoints/best_model.pt
+MODEL_PATH=best_model.pt
 DEVICE=cuda
 PORT=8000
 ```
@@ -1065,7 +1065,7 @@ app.use("/api/predict", limiter);
 
 ## Notes for the Implementing Agent
 
-1. **Train before deploying**: The `ml/checkpoints/best_model.pt` file must exist before the inference service can start. Run `python ml/train/train.py` first. Training on a GPU takes approximately 6–12 hours for the full combined dataset.
+1. **Train before deploying**: The `best_model.pt` file must exist at the project root before the inference service can start. Run `python ml/train/train.py` first and place/copy the final model at `<repo-root>/best_model.pt`. Training on a GPU takes approximately 6–12 hours for the full combined dataset.
 
 2. **Image downloads are large**: The Fakeddit image dataset is ~100GB. Use the `multimodal_only_samples` subset and only download images referenced in those TSV files.
 
