@@ -14,59 +14,56 @@ export function Header() {
   };
 
   return (
-    <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link href="/" className="text-xl font-bold text-blue-600 hover:text-blue-700">
-            🔍 FakeNews Detector
-          </Link>
-
-          <nav className="flex items-center gap-2 md:gap-4">
-            {user ? (
-              <>
-                <Link 
-                  href="/predict" 
-                  className="px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors font-medium"
-                >
-                  Analyze
-                </Link>
-                <Link 
-                  href="/history" 
-                  className="px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
-                >
-                  History
-                </Link>
-                <div className="flex items-center gap-3 ml-2 md:ml-4 pl-2 md:pl-4 border-l border-gray-200">
-                  <span className="text-sm text-gray-600 hidden md:block">
-                    {user.name || user.email}
-                  </span>
-                  <button
-                    onClick={handleLogout}
-                    className="px-3 py-1.5 text-sm bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
-                  >
-                    Logout
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <Link 
-                  href="/login" 
-                  className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  Login
-                </Link>
-                <Link 
-                  href="/signup" 
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-                >
-                  Sign Up
-                </Link>
-              </>
-            )}
-          </nav>
+    <nav className="w-full top-0 sticky z-50 bg-[#060e20] shadow-[0_0_15px_rgba(124,77,255,0.08)]">
+      <div className="flex justify-between items-center px-8 py-4 max-w-[1440px] mx-auto">
+        <Link href="/" className="text-2xl font-bold tracking-tighter text-[#dee5ff] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          Forensic Intelligence
+        </Link>
+        
+        <div className="hidden md:flex items-center space-x-8 font-medium tracking-tight text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <Link className="text-[#00e3fd] border-b-2 border-[#00e3fd] pb-1" href="/">Analysis</Link>
+          {user && (
+            <>
+              <Link className="text-[#dee5ff]/70 hover:text-[#dee5ff] transition-colors" href="/predict">Predict</Link>
+              <Link className="text-[#dee5ff]/70 hover:text-[#dee5ff] transition-colors" href="/history">History</Link>
+            </>
+          )}
+        </div>
+        
+        <div className="flex items-center space-x-4">
+          {user ? (
+            <>
+              <span className="text-sm text-[#dee5ff]/70 hidden md:block" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                {user.name || user.email}
+              </span>
+              <button
+                onClick={handleLogout}
+                className="px-5 py-2 text-sm font-semibold text-[#dee5ff]/70 hover:text-[#dee5ff] transition-all"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link 
+                href="/login"
+                className="px-5 py-2 text-sm font-semibold text-[#dee5ff]/70 hover:text-[#dee5ff] transition-all"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                Sign In
+              </Link>
+              <Link 
+                href="/signup"
+                className="px-6 py-2 bg-[#b6a0ff] text-[#340090] font-bold text-sm rounded-md active:scale-95 duration-150 shadow-[0_0_15px_rgba(182,160,255,0.3)] hover:brightness-110 transition-all"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
         </div>
       </div>
-    </header>
+    </nav>
   );
 }

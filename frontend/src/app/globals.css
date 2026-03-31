@@ -1,21 +1,111 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f9fafb;
-  --foreground: #171717;
+  /* Forensic Intelligence Design System */
+  --on-secondary-container: #e8fbff;
+  --inverse-on-surface: #4d556b;
+  --on-surface: #dee5ff;
+  --on-tertiary-fixed-variant: #70103e;
+  --primary: #b6a0ff;
+  --on-surface-variant: #a3aac4;
+  --secondary-fixed-dim: #00d7f0;
+  --tertiary-fixed-dim: #f57ca9;
+  --error-container: #a70138;
+  --surface-variant: #192540;
+  --error-dim: #d73357;
+  --on-primary-fixed: #000000;
+  --on-secondary-fixed: #003a42;
+  --outline-variant: #40485d;
+  --on-error-container: #ffb2b9;
+  --on-error: #490013;
+  --surface-container: #0f1930;
+  --on-tertiary: #690939;
+  --tertiary-container: #fb81ae;
+  --on-secondary: #004d57;
+  --on-primary: #340090;
+  --surface-container-lowest: #000000;
+  --secondary-fixed: #26e6ff;
+  --on-secondary-fixed-variant: #005964;
+  --surface-container-low: #091328;
+  --surface-dim: #060e20;
+  --on-background: #dee5ff;
+  --tertiary-dim: #ee77a3;
+  --secondary-container: #006875;
+  --primary-fixed: #a98fff;
+  --surface-container-highest: #192540;
+  --surface: #060e20;
+  --surface-bright: #1f2b49;
+  --on-primary-container: #280072;
+  --on-tertiary-fixed: #37001a;
+  --secondary-dim: #00d4ec;
+  --tertiary-fixed: #ff8db6;
+  --outline: #6d758c;
+  --inverse-surface: #faf8ff;
+  --primary-container: #a98fff;
+  --primary-dim: #7e51ff;
+  --surface-tint: #b6a0ff;
+  --on-primary-fixed-variant: #32008a;
+  --inverse-primary: #6834eb;
+  --error: #ff6e84;
+  --background: #060e20;
+  --surface-container-high: #141f38;
+  --primary-fixed-dim: #9c7eff;
+  --secondary: #00e3fd;
+  --on-tertiary-container: #59002e;
+  --tertiary: #ff96bb;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-foreground: var(--on-surface);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Custom colors for the design system */
+  --color-primary: #b6a0ff;
+  --color-primary-dim: #7e51ff;
+  --color-secondary: #00e3fd;
+  --color-tertiary: #ff96bb;
+  --color-error: #ff6e84;
+  --color-surface: #060e20;
+  --color-surface-container: #0f1930;
+  --color-surface-container-low: #091328;
+  --color-surface-container-high: #141f38;
+  --color-surface-variant: #192540;
+  --color-surface-bright: #1f2b49;
+  --color-on-surface: #dee5ff;
+  --color-on-surface-variant: #a3aac4;
+  --color-on-primary: #340090;
+  --color-outline: #6d758c;
+  --color-outline-variant: #40485d;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  background-color: #060e20;
+  color: #dee5ff;
+  font-family: 'Inter', var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Glass panel effect */
+.glass-panel {
+  background: rgba(25, 37, 64, 0.6);
+  backdrop-filter: blur(20px);
+}
+
+/* Primary gradient */
+.primary-gradient {
+  background: linear-gradient(135deg, #b6a0ff 0%, #7e51ff 100%);
+}
+
+/* Cyber glow effect */
+.cyber-glow {
+  box-shadow: 0 0 15px rgba(0, 227, 253, 0.08);
+}
+
+/* Selection styles */
+::selection {
+  background-color: #b6a0ff;
+  color: #340090;
 }
 
 /* Form input styles */
@@ -25,5 +115,12 @@ input, textarea, select {
 
 input:focus, textarea:focus, select:focus {
   ring: 2px;
-  ring-color: #3b82f6;
+  ring-color: #b6a0ff;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  vertical-align: middle;
 }
