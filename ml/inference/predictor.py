@@ -7,8 +7,12 @@ import logging
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from train.model import MultiModalFusionNet, ModelConfig
-from .preprocess import TextPreprocessor, ImagePreprocessor
-from .explainer import PredictionExplainer
+try:
+    from .preprocess import TextPreprocessor, ImagePreprocessor
+    from .explainer import PredictionExplainer
+except ImportError:
+    from preprocess import TextPreprocessor, ImagePreprocessor
+    from explainer import PredictionExplainer
 
 logger = logging.getLogger(__name__)
 
