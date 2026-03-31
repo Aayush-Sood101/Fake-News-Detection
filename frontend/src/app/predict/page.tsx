@@ -106,146 +106,179 @@ function PredictPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Analyze Article</h1>
-        <p className="mt-2 text-gray-600">
-          Submit an article title, content, and optionally an image to detect if it might be fake news.
-        </p>
-      </div>
-
-      {/* Prediction Form */}
-      <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 mb-8">
-        {/* Title Input */}
-        <div className="mb-6">
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
-            Article Title <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Enter the article headline..."
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-            disabled={isLoading}
-          />
-        </div>
-
-        {/* Body Input */}
-        <div className="mb-6">
-          <label htmlFor="body" className="block text-sm font-medium text-gray-700 mb-2">
-            Article Content (Optional)
-          </label>
-          <textarea
-            id="body"
-            value={body}
-            onChange={(e) => setBody(e.target.value)}
-            placeholder="Paste the article content here for more accurate analysis..."
-            rows={6}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-y"
-            disabled={isLoading}
-          />
-        </div>
-
-        {/* Image Upload */}
-        <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Article Image (Optional)
-          </label>
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
-            {imagePreview ? (
-              <div className="space-y-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src={imagePreview} 
-                  alt="Preview" 
-                  className="max-h-64 mx-auto rounded-lg shadow"
-                />
-                <button
-                  type="button"
-                  onClick={removeImage}
-                  className="text-red-600 hover:text-red-700 text-sm font-medium"
-                >
-                  Remove Image
-                </button>
+    <div className="min-h-screen bg-[#060e20]">
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-12 h-12 rounded-xl bg-[#b6a0ff]/20 flex items-center justify-center">
+              <span className="material-symbols-outlined text-2xl text-[#b6a0ff]">search</span>
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold text-[#dee5ff]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                Forensic Analysis Terminal
+              </h1>
+              <div className="flex items-center gap-2 mt-1">
+                <span className="w-2 h-2 rounded-full bg-[#00e3fd] animate-pulse"></span>
+                <span className="text-xs text-[#00e3fd] font-semibold uppercase tracking-wider">Neural Engine Ready</span>
               </div>
-            ) : (
-              <div>
-                <div className="text-4xl mb-2">📷</div>
-                <p className="text-gray-600 mb-2">Drag & drop an image or click to select</p>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className="hidden"
-                  id="image-upload"
-                  disabled={isLoading}
-                />
-                <label
-                  htmlFor="image-upload"
-                  className="inline-block px-4 py-2 bg-gray-100 text-gray-700 rounded-md cursor-pointer hover:bg-gray-200 transition-colors"
-                >
-                  Choose File
-                </label>
-              </div>
-            )}
+            </div>
           </div>
-          <p className="mt-2 text-xs text-gray-500">
-            Adding an image enables multimodal analysis for better accuracy
+          <p className="text-[#a3aac4]">
+            Submit content for multi-modal authenticity verification. Our neural network analyzes text and visual patterns to detect potential fabrications.
           </p>
         </div>
 
-        {/* Error Display */}
-        {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
-            <p className="font-medium">Error</p>
-            <p>{error}</p>
+        {/* Prediction Form */}
+        <form onSubmit={handleSubmit} className="rounded-xl border border-[#40485d]/30 p-6 mb-8" style={{ background: 'rgba(25, 37, 64, 0.6)', backdropFilter: 'blur(20px)' }}>
+          {/* Title Input */}
+          <div className="mb-6">
+            <label htmlFor="title" className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#a3aac4] mb-3">
+              <span className="material-symbols-outlined text-sm text-[#b6a0ff]">title</span>
+              Article Title <span className="text-[#ff6e84]">*</span>
+            </label>
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Enter the article headline..."
+              className="w-full px-4 py-3 bg-[#060e20] border border-[#40485d]/50 rounded-lg text-[#dee5ff] placeholder-[#6d758c] focus:ring-2 focus:ring-[#00e3fd]/50 focus:border-[#00e3fd] transition-all outline-none"
+              disabled={isLoading}
+            />
+          </div>
+
+          {/* Body Input */}
+          <div className="mb-6">
+            <label htmlFor="body" className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#a3aac4] mb-3">
+              <span className="material-symbols-outlined text-sm text-[#b6a0ff]">description</span>
+              Article Content <span className="text-[#6d758c]">(Optional)</span>
+            </label>
+            <textarea
+              id="body"
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
+              placeholder="Paste the article content here for more accurate analysis..."
+              rows={6}
+              className="w-full px-4 py-3 bg-[#060e20] border border-[#40485d]/50 rounded-lg text-[#dee5ff] placeholder-[#6d758c] focus:ring-2 focus:ring-[#00e3fd]/50 focus:border-[#00e3fd] transition-all outline-none resize-y"
+              disabled={isLoading}
+            />
+          </div>
+
+          {/* Image Upload */}
+          <div className="mb-6">
+            <label className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#a3aac4] mb-3">
+              <span className="material-symbols-outlined text-sm text-[#b6a0ff]">image</span>
+              Visual Evidence <span className="text-[#6d758c]">(Optional)</span>
+            </label>
+            <div className={`border-2 border-dashed rounded-xl p-6 text-center transition-all ${imagePreview ? 'border-[#00e3fd]/50 bg-[#00e3fd]/5' : 'border-[#40485d]/50 hover:border-[#00e3fd]/30 bg-[#060e20]/50'}`}>
+              {imagePreview ? (
+                <div className="space-y-4">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img 
+                    src={imagePreview} 
+                    alt="Preview" 
+                    className="max-h-64 mx-auto rounded-lg border border-[#40485d]/30"
+                  />
+                  <button
+                    type="button"
+                    onClick={removeImage}
+                    className="inline-flex items-center gap-2 text-[#ff6e84] hover:text-[#ff6e84]/80 text-sm font-medium transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-sm">delete</span>
+                    Remove Image
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <div className="w-16 h-16 mx-auto rounded-xl bg-[#b6a0ff]/10 flex items-center justify-center mb-3">
+                    <span className="material-symbols-outlined text-3xl text-[#b6a0ff]">add_photo_alternate</span>
+                  </div>
+                  <p className="text-[#a3aac4] mb-3">Drag & drop an image or click to select</p>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="hidden"
+                    id="image-upload"
+                    disabled={isLoading}
+                  />
+                  <label
+                    htmlFor="image-upload"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#141f38] text-[#dee5ff] border border-[#40485d]/50 rounded-lg cursor-pointer hover:bg-[#1f2b49] transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-sm">upload</span>
+                    Choose File
+                  </label>
+                </div>
+              )}
+            </div>
+            <p className="mt-2 text-xs text-[#6d758c] flex items-center gap-1">
+              <span className="material-symbols-outlined text-xs">info</span>
+              Adding an image enables multimodal analysis for enhanced detection accuracy
+            </p>
+          </div>
+
+          {/* Error Display */}
+          {error && (
+            <div className="mb-6 p-4 bg-[#ff6e84]/10 border border-[#ff6e84]/30 rounded-lg">
+              <div className="flex items-center gap-2 text-[#ff6e84]">
+                <span className="material-symbols-outlined">error</span>
+                <span className="font-medium">Error</span>
+              </div>
+              <p className="text-[#ff6e84]/80 mt-1">{error}</p>
+            </div>
+          )}
+
+          {/* Submit Button */}
+          <div className="flex gap-4">
+            <button
+              type="submit"
+              disabled={isLoading || !title.trim()}
+              className="flex-1 px-6 py-4 bg-gradient-to-r from-[#b6a0ff] to-[#7e51ff] text-white font-bold rounded-lg hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100 transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(182,160,255,0.3)]"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              {isLoading ? (
+                <>
+                  <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
+                  Analyzing Neural Patterns...
+                </>
+              ) : (
+                <>
+                  <span className="material-symbols-outlined">neurology</span>
+                  Initiate Analysis
+                </>
+              )}
+            </button>
+            {result && (
+              <button
+                type="button"
+                onClick={resetForm}
+                className="px-6 py-4 bg-[#141f38] text-[#dee5ff] font-medium rounded-lg border border-[#40485d]/50 hover:bg-[#1f2b49] transition-colors flex items-center gap-2"
+              >
+                <span className="material-symbols-outlined">refresh</span>
+                New Analysis
+              </button>
+            )}
+          </div>
+        </form>
+
+        {/* Prediction Result */}
+        {result && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="material-symbols-outlined text-[#b6a0ff]">fact_check</span>
+              <h2 className="text-xl font-bold text-[#dee5ff]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Analysis Result</h2>
+            </div>
+            <PredictionResult 
+              result={result} 
+              onFeedback={handleFeedback}
+              feedbackSubmitted={feedbackSubmitted}
+            />
           </div>
         )}
-
-        {/* Submit Button */}
-        <div className="flex gap-4">
-          <button
-            type="submit"
-            disabled={isLoading || !title.trim()}
-            className="flex-1 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
-          >
-            {isLoading ? (
-              <>
-                <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
-                Analyzing...
-              </>
-            ) : (
-              <>
-                🔍 Analyze Article
-              </>
-            )}
-          </button>
-          {result && (
-            <button
-              type="button"
-              onClick={resetForm}
-              className="px-6 py-3 bg-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-300 transition-colors"
-            >
-              New Analysis
-            </button>
-          )}
-        </div>
-      </form>
-
-      {/* Prediction Result */}
-      {result && (
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Analysis Result</h2>
-          <PredictionResult 
-            result={result} 
-            onFeedback={handleFeedback}
-            feedbackSubmitted={feedbackSubmitted}
-          />
-        </div>
-      )}
+      </div>
     </div>
   );
 }

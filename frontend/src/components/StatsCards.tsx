@@ -29,49 +29,60 @@ export function StatsCards({ stats }: StatsCardProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       {/* Total Predictions */}
-      <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
+      <div className="rounded-xl border border-[#40485d]/30 p-5" style={{ background: 'rgba(25, 37, 64, 0.6)', backdropFilter: 'blur(20px)' }}>
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-500">Total Predictions</p>
-            <p className="text-3xl font-bold text-gray-900">{stats.total}</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-[#a3aac4] mb-1">Total Analyses</p>
+            <p className="text-3xl font-bold text-[#dee5ff]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{stats.total}</p>
           </div>
-          <div className="text-4xl">📊</div>
+          <div className="w-12 h-12 rounded-xl bg-[#b6a0ff]/20 flex items-center justify-center">
+            <span className="material-symbols-outlined text-2xl text-[#b6a0ff]">analytics</span>
+          </div>
         </div>
       </div>
 
       {/* Avg Confidence */}
-      <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
+      <div className="rounded-xl border border-[#40485d]/30 p-5" style={{ background: 'rgba(25, 37, 64, 0.6)', backdropFilter: 'blur(20px)' }}>
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-500">Avg Confidence</p>
-            <p className="text-3xl font-bold text-blue-600">{avgConfidencePercent}%</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-[#a3aac4] mb-1">Avg Confidence</p>
+            <p className="text-3xl font-bold text-[#00e3fd]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{avgConfidencePercent}%</p>
           </div>
-          <div className="text-4xl">🎯</div>
+          <div className="w-12 h-12 rounded-xl bg-[#00e3fd]/20 flex items-center justify-center">
+            <span className="material-symbols-outlined text-2xl text-[#00e3fd]">target</span>
+          </div>
+        </div>
+        {/* Mini confidence bar */}
+        <div className="mt-3 h-1.5 bg-[#060e20] rounded-full overflow-hidden">
+          <div 
+            className="h-full bg-gradient-to-r from-[#00e3fd] to-[#00d7f0]"
+            style={{ width: `${stats.avgConfidence * 100}%` }}
+          />
         </div>
       </div>
 
       {/* Fake vs Real Breakdown */}
-      <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
-        <p className="text-sm text-gray-500 mb-2">Classification Breakdown</p>
-        <div className="flex items-center gap-4">
+      <div className="rounded-xl border border-[#40485d]/30 p-5" style={{ background: 'rgba(25, 37, 64, 0.6)', backdropFilter: 'blur(20px)' }}>
+        <p className="text-xs font-bold uppercase tracking-wider text-[#a3aac4] mb-3">Classification Breakdown</p>
+        <div className="flex items-center gap-4 mb-3">
           <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-red-500"></span>
-            <span className="text-sm">Fake: <strong>{stats.breakdown.fake}</strong></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ff6e84]"></span>
+            <span className="text-sm text-[#a3aac4]">Fake: <strong className="text-[#ff6e84]">{stats.breakdown.fake}</strong></span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-green-500"></span>
-            <span className="text-sm">Real: <strong>{stats.breakdown.real}</strong></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-[#00e3fd]"></span>
+            <span className="text-sm text-[#a3aac4]">Real: <strong className="text-[#00e3fd]">{stats.breakdown.real}</strong></span>
           </div>
         </div>
         {/* Visual bar */}
         {stats.total > 0 && (
-          <div className="mt-3 h-2 rounded-full overflow-hidden bg-gray-200 flex">
+          <div className="h-2 rounded-full overflow-hidden bg-[#060e20] flex">
             <div 
-              className="bg-red-500 h-full"
+              className="bg-gradient-to-r from-[#ff6e84] to-[#d73357] h-full transition-all duration-500"
               style={{ width: `${(stats.breakdown.fake / stats.total) * 100}%` }}
             />
             <div 
-              className="bg-green-500 h-full"
+              className="bg-gradient-to-r from-[#00e3fd] to-[#00d7f0] h-full transition-all duration-500"
               style={{ width: `${(stats.breakdown.real / stats.total) * 100}%` }}
             />
           </div>
@@ -79,18 +90,20 @@ export function StatsCards({ stats }: StatsCardProps) {
       </div>
 
       {/* User Feedback Accuracy */}
-      <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
+      <div className="rounded-xl border border-[#40485d]/30 p-5" style={{ background: 'rgba(25, 37, 64, 0.6)', backdropFilter: 'blur(20px)' }}>
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-500">Feedback Accuracy</p>
-            <p className="text-3xl font-bold text-green-600">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#a3aac4] mb-1">Feedback Accuracy</p>
+            <p className="text-3xl font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: accuracyRate === 'N/A' ? '#a3aac4' : '#4ade80' }}>
               {accuracyRate}{typeof accuracyRate === 'string' ? '' : '%'}
             </p>
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs text-[#6d758c] mt-1">
               {stats.feedback.correct} correct / {stats.feedback.incorrect} incorrect
             </p>
           </div>
-          <div className="text-4xl">✅</div>
+          <div className="w-12 h-12 rounded-xl bg-[#4ade80]/20 flex items-center justify-center">
+            <span className="material-symbols-outlined text-2xl text-[#4ade80]">verified</span>
+          </div>
         </div>
       </div>
     </div>
