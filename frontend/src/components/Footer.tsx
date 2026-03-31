@@ -7,7 +7,7 @@ export function Footer() {
   const { user } = useAuth();
 
   return (
-    <footer className="w-full py-12 border-t border-[#40485d]/10 bg-[#060e20]">
+    <footer className="w-full border-t border-[#40485d]/10 bg-[#060e20]">
       <div className="bg-[#0f1930] py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-12 max-w-[1440px] mx-auto">
           <div className="space-y-6">
