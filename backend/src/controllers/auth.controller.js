@@ -10,7 +10,7 @@ export const signup=async(req,res)=>{
         if (!req.body) {
             return res.status(400).json({message: "Request body is required"});
         }
-        if (!email || !password || !name || !role) {
+        if (!email || !password || !name) {
             return res.status(400).json({message: "All fields are required"});
         }
 
@@ -37,12 +37,13 @@ export const signup=async(req,res)=>{
             role: role || "user"
         });
 
-        generateToken(newUser.id, res);
+        const token = generateToken(newUser.id, res);
 
         res.status(201).json({
             id: newUser.id,
             email: newUser.email,
-            name: newUser.name
+            name: newUser.name,
+            token
         });
 
     }
@@ -69,13 +70,14 @@ export const login = async (req, res) => {
     }
 
     
-    generateToken(user.id, res);
+    const token = generateToken(user.id, res);
 
     res.status(200).json({
       id: user.id,
       name: user.name,
       email: user.email,
-      role: user.role
+      role: user.role,
+      token
     });
 
   } catch (error) {

@@ -2,6 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    domains: [
+      "localhost",
+      ...(process.env.S3_BUCKET ? [`${process.env.S3_BUCKET}.s3.amazonaws.com`] : []),
+    ],
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: 'https',
@@ -10,6 +15,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  output: "standalone",
+  poweredByHeader: false,
 };
 
 export default nextConfig;

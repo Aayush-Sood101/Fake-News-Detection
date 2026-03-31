@@ -4,8 +4,12 @@ const { User } = pkg.default;
 
 export const Auth = async (req, res, next) => {
   try {
-    const token = req.cookies?.jwt;
-    console.log("Auth Header:", req.headers.authorization);
+    const authHeader = req.headers.authorization;
+    const bearerToken = authHeader && authHeader.startsWith("Bearer ")
+      ? authHeader.split(" ")[1]
+      : null;
+    const token = req.cookies?.jwt || bearerToken;
+
     if (!token) {
       return res.status(401).json({ message: "No token"});
     }

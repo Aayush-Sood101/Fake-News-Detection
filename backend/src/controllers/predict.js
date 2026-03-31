@@ -1,11 +1,12 @@
 import FormData from "form-data";
 import pkg from "../models/index.js";
 import { predict as mlPredict } from "../utils/pythonClient.js";
+import { sanitizeArticle } from "../utils/sanitize.js";
 const { Prediction } = pkg;
 
 export const predict = async (req, res) => {
   try {
-    const { title, body } = req.body;
+    const { title, body } = sanitizeArticle(req.body.title, req.body.body);
 
     const formData = new FormData();
     formData.append("title", title);

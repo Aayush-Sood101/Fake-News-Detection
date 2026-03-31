@@ -1,8 +1,8 @@
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
-from schemas import PredictResponse, HealthResponse
-from predictor import FakeNewsPredictor
+from .schemas import PredictResponse, HealthResponse
+from .predictor import FakeNewsPredictor
 import os
 import logging
 
