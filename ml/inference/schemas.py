@@ -1,6 +1,6 @@
 """Pydantic schemas for API request/response validation."""
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, ConfigDict
 from typing import Optional
 
 
@@ -30,14 +30,15 @@ class PredictRequest(BaseModel):
             raise ValueError('Title cannot be empty or whitespace only')
         return v.strip()
     
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "title": "Breaking: Major Scientific Discovery Announced",
                 "body": "Scientists at MIT have discovered...",
                 "image_url": "https://example.com/image.jpg"
             }
         }
+    )
 
 
 class PredictResponse(BaseModel):
@@ -62,8 +63,8 @@ class PredictResponse(BaseModel):
         description="Modality used: 'text_only' or 'multimodal'"
     )
     
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "label": "FAKE",
                 "confidence": 0.92,
@@ -71,6 +72,7 @@ class PredictResponse(BaseModel):
                 "modality": "multimodal"
             }
         }
+    )
 
 
 class HealthResponse(BaseModel):
@@ -89,11 +91,12 @@ class HealthResponse(BaseModel):
         description="Device being used for inference (cpu/cuda)"
     )
     
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "status": "ok",
                 "model_loaded": True,
                 "device": "cpu"
             }
         }
+    )

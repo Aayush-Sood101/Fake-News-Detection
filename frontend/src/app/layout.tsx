@@ -42,9 +42,6 @@ export default function RootLayout({
       lang="en"
       className={`dark ${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
-      <head>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-      </head>
       <body className="min-h-full flex flex-col bg-[#060e20] text-[#dee5ff] selection:bg-[#b6a0ff] selection:text-[#340090]">
         <AuthProvider>
           <Header />
