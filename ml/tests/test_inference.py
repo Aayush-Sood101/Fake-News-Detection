@@ -44,7 +44,8 @@ class TestPredictEndpoint:
 
     def test_predict_empty_title_fails(self):
         client = build_client()
-        response = client.post("/predict", data={"title": "", "body": "Some body"})
+        # Use whitespace so request passes "required" validation and reaches app-level title check.
+        response = client.post("/predict", data={"title": "   ", "body": "Some body"})
         assert response.status_code == 400
 
     def test_predict_missing_title_fails(self):
