@@ -179,7 +179,7 @@ fake-news-detector/
 ### ML / Python Inference Service
 | Tool | Version | Purpose |
 |------|---------|---------|
-| **Python** | 3.10+ | Language |
+| **Python** | 3.10 - 3.13 | Language |
 | **PyTorch** | 2.0+ | Deep learning framework |
 | **HuggingFace Transformers** | 4.30+ | RoBERTa, ViT pretrained models |
 | **HuggingFace Datasets** | Latest | Dataset loading utilities |
@@ -889,7 +889,7 @@ PORT=8000
 
 ### Prerequisites
 - Node.js 20+
-- Python 3.10+
+- Python 3.10 - 3.13
 - PostgreSQL 15+
 - CUDA-capable GPU (strongly recommended for training; inference can run on CPU)
 - Docker (optional but recommended)
@@ -940,6 +940,11 @@ pip install -r requirements.txt
 # Download and preprocess data first (see Data Pipeline section)
 python train/train.py --config configs/config.yaml
 uvicorn inference.app:app --host 0.0.0.0 --port 8000 --reload
+```
+
+Alternative from repo root (recommended for consistent imports):
+```bash
+uvicorn ml.inference.app:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 ---

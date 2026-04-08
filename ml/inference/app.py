@@ -4,12 +4,19 @@ from contextlib import asynccontextmanager
 import os
 import logging
 
+# Support both execution styles:
+# - `uvicorn app:app` from `ml/inference`
+# - `uvicorn ml.inference.app:app` from repo root
 try:
-    from .schemas import PredictResponse, HealthResponse
-    from .predictor import FakeNewsPredictor
+    from ml.inference.schemas import PredictResponse, HealthResponse
+    from ml.inference.predictor import FakeNewsPredictor
 except ImportError:
-    from schemas import PredictResponse, HealthResponse
-    from predictor import FakeNewsPredictor
+    try:
+        from .schemas import PredictResponse, HealthResponse
+        from .predictor import FakeNewsPredictor
+    except ImportError:
+        from schemas import PredictResponse, HealthResponse
+        from predictor import FakeNewsPredictor
 
 # Configure logging
 logging.basicConfig(

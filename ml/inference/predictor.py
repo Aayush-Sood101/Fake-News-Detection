@@ -1,18 +1,24 @@
 import torch
-import sys
 import os
+import sys
 import logging
 
-# add parent path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-from train.model import MultiModalFusionNet, ModelConfig
 try:
-    from .preprocess import TextPreprocessor, ImagePreprocessor
-    from .explainer import PredictionExplainer
+    from ml.train.model import MultiModalFusionNet, ModelConfig
+    from ml.inference.preprocess import TextPreprocessor, ImagePreprocessor
+    from ml.inference.explainer import PredictionExplainer
 except ImportError:
-    from preprocess import TextPreprocessor, ImagePreprocessor
-    from explainer import PredictionExplainer
+    try:
+        from ..train.model import MultiModalFusionNet, ModelConfig
+        from .preprocess import TextPreprocessor, ImagePreprocessor
+        from .explainer import PredictionExplainer
+    except ImportError:
+        parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+        if parent_dir not in sys.path:
+            sys.path.append(parent_dir)
+        from train.model import MultiModalFusionNet, ModelConfig
+        from preprocess import TextPreprocessor, ImagePreprocessor
+        from explainer import PredictionExplainer
 
 logger = logging.getLogger(__name__)
 
@@ -41,7 +47,7 @@ class FakeNewsPredictor:
 
         # Load weights
         self.model.load_state_dict(
-            torch.load(model_path, map_location=self.device)
+            torch.load(model_path, map_location=self.device, weights_only=False)
         )
 
         self.model.to(self.device)
@@ -114,7 +120,7 @@ class FakeNewsPredictor:
         pred = torch.argmax(probs, dim=-1).item()
         confidence = probs[0][pred].item()
 
-        label = "REAL" if pred == 1 else "FAKE"
+        label = "FAKE" if pred == 1 else "REAL"
         
         # Generate explanation
         explanation = self.explainer.explain(label, confidence, modality)
