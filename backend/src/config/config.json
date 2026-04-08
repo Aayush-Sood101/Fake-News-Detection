@@ -1,10 +1,8 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "Adit@0428",
-    "database": "fakenews",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "sqlite",
+    "storage": "./fakenews-dev.sqlite",
+    "logging": false
   },
   "test": {
     "dialect": "sqlite",

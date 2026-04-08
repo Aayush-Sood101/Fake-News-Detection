@@ -17,7 +17,7 @@ from pathlib import Path
 from model import MultiModalFusionNet, ModelConfig
 from dataset import FakeNewsDataset, collate_fn
 from losses import LabelSmoothingCrossEntropy
-from ml.train.evaluate_model import evaluate_model
+from evaluate_model import evaluate_model
 
 # Optional W&B import
 try:
