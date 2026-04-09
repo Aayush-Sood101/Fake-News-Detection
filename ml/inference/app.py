@@ -15,8 +15,8 @@ except ImportError:
         from .schemas import PredictResponse, HealthResponse
         from .predictor import FakeNewsPredictor
     except ImportError:
-        from schemas import PredictResponse, HealthResponse
-        from predictor import FakeNewsPredictor
+        from inference.schemas import PredictResponse, HealthResponse
+        from inference.predictor import FakeNewsPredictor
 
 # Configure logging
 logging.basicConfig(
@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 predictor = None
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-default_model_path = os.path.abspath(os.path.join(BASE_DIR, "..", "..", "best_model.pt"))
+default_model_path = os.path.abspath(os.path.join(BASE_DIR, "..", "checkpoints", "best_model.pt"))
 model_path = os.getenv("MODEL_PATH", default_model_path)
 
 

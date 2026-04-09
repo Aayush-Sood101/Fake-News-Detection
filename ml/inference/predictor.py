@@ -17,8 +17,8 @@ except ImportError:
         if parent_dir not in sys.path:
             sys.path.append(parent_dir)
         from train.model import MultiModalFusionNet, ModelConfig
-        from preprocess import TextPreprocessor, ImagePreprocessor
-        from explainer import PredictionExplainer
+        from inference.preprocess import TextPreprocessor, ImagePreprocessor
+        from inference.explainer import PredictionExplainer
 
 logger = logging.getLogger(__name__)
 
